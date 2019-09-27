@@ -1,0 +1,7 @@
+{
+  "name": "x-web",
+  "version": "0.0.1",
+  "description": "a web project",
+  "main": "index.js",
+  "repository": "git@github.com:caosm/web-template-project.git"
+}
