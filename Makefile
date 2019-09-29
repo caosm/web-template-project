@@ -25,7 +25,7 @@
 VERSION ?= $(shell git describe --tags --always --dirty)
 
 # Available cpus for compiling, please refer to https://github.com/caicloud/engineering/issues/8186#issuecomment-518656946 for more information.
-CPUS ?= $(shell sh build/read_cpus_available.sh)
+CPUS ?= $(shell bash build/read_cpus_available.sh)
 
 # Container REGISTRY.
 REGISTRY ?= cargo.dev.caicloud.xyz/release
@@ -43,7 +43,7 @@ IMAGE_SUFFIX ?= $(strip )
 # These variables should not need tweaking.
 #
 
-# Target binaries. You can build multiple binaries for a single project.
+# Target images. You can build multiple images for a single project.
 TARGETS := x-web
 
 # Build direcotory.
@@ -58,7 +58,7 @@ BUILD_DIR := ./build
 
 build-local:
 	@for target in $(TARGETS); do                                                     \
-	  sh -c 'set -ex &&                                                               \
+	  bash -c 'set -ex &&                                                             \
 	    yarn &&                                                                       \
 	    CPUS=$(CPUS) yarn run build';                                                 \
 	done
