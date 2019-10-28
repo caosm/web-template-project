@@ -35,6 +35,9 @@ BUILD_ENV ?= local
 # cache_folder for yarn (default folder: https://github.com/caicloud/cyclone/blob/master/pkg/server/biz/accelerator/accelerate.go#L72)
 YARN_CACHE_DIR ?= /root/.npm
 
+# Track code version with Docker Label.
+DOCKER_LABELS ?= git-describe="$(shell date -u +v%Y%m%d)-$(shell git describe --tags --always --dirty)"
+
 # image prefix and suffix added to targets.
 # The final built images are:
 #   $[REGISTRY]/$[IMAGE_PREFIX]$[TARGET]$[IMAGE_SUFFIX]:$[VERSION]
@@ -80,6 +83,7 @@ container: build
 	@for target in $(TARGETS); do                                                     \
 	  image=$(IMAGE_PREFIX)$${target}$(IMAGE_SUFFIX);                                 \
 	  docker build -t $(REGISTRY)/$${image}:$(VERSION)                                \
+	    --label $(DOCKER_LABELS)                                                      \
 	    -f $(BUILD_DIR)/$${target}/Dockerfile .;                                      \
 	  if [ $(BUILD_ENV) == local ]; then                                              \
 	    docker image prune --filter label="stage=web_cacher";                         \
