@@ -62,10 +62,10 @@ TBD.
 ### Run container
 
 ```bash
-docker run -p <port>:3000 cargo.dev.caicloud.xyz/release/x-web:<VERSION> 
+docker run -p <port>:3000 cargo.dev.caicloud.xyz/release/x-web:<VERSION>
 ```
 
-`port` MUST be one of endpoint-ports of modularize-web. 
+`port` MUST be one of endpoint-ports of modularize-web.
 
 ### Layout
 
